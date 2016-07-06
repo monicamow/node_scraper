@@ -1,7 +1,8 @@
 var request = require('request')
 var cheerio = require('cheerio')
+var websiteURL = 'http://substack.net/images/'
 
-request('http://substack.net/images/', function (error, response, html) {
+request(websiteURL, function (error, response, html) {
   if (error)
     console.log(error)
 
@@ -9,12 +10,16 @@ request('http://substack.net/images/', function (error, response, html) {
     var $ = cheerio.load(html);
     $('tr').each(function(i, element) { 
       var filePermission = $(this).children(':nth-child(1)').text();
-      var absoluteURL = $(this).children(':nth-child(2)').text();
-      var fileType = $(this).children(':nth-child(3)').text();
+      var absoluteURL = $(this).children(':nth-child(3)').children().attr('href');
+      var fileName = $(this).children(':nth-child(3)').text();
+
+      // extract file type
+
+      var fileType = fileName.split('.')[1];
 
       var data = {
         filePermission: filePermission,
-        absoluteURL: absoluteURL,
+        absoluteURL: websiteURL + absoluteURL.substring(8, absoluteURL.length),
         fileType: fileType
       }
       console.log(data); 

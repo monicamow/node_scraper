@@ -36,8 +36,6 @@ request(websiteURL, function (error, response, html) {
 
     var filteredDataArray = dataArray.filter(isImageFile);
 
-    console.log(filteredDataArray); 
-
     function CSV(array) {
         // Use first element to choose the keys and the order
         var keys = Object.keys(array[0]);

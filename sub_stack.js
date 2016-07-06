@@ -11,6 +11,13 @@ request('http://substack.net/images/', function (error, response, html) {
       var filePermission = $(this).children(':nth-child(1)').text();
       var absoluteURL = $(this).children(':nth-child(2)').text();
       var fileType = $(this).children(':nth-child(3)').text();
+
+      var data = {
+        filePermission: filePermission,
+        absoluteURL: absoluteURL,
+        fileType: fileType
+      }
+      console.log(data); 
     });
   }
   

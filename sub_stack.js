@@ -57,6 +57,18 @@ request(websiteURL, function (error, response, html) {
         return result;
     }
 
+    var dataCSV = CSV(filteredDataArray);
+
+    var options = {flags: 'w', encoding: 'utf8', autoClose: true}
+
+    fs.writeFile('sub_stack.csv', dataCSV, options, function (err) {
+      if (err) {
+        console.log('Some error occured - file either not saved or corrupted file saved.');
+      } else{
+        console.log('It\'s saved!');
+      }
+    });
+
   }
   
 });

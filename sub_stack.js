@@ -38,6 +38,25 @@ request(websiteURL, function (error, response, html) {
 
     console.log(filteredDataArray); 
 
+    function CSV(array) {
+        // Use first element to choose the keys and the order
+        var keys = Object.keys(array[0]);
+
+        // Build header
+        var result = keys.join("\t") + "\n";
+
+        // Add the rows
+        array.forEach(function(obj){
+            keys.forEach(function(key, value){
+                if (value) result += "\t";
+                result += obj[key];
+            });
+            result += "\n";
+        });
+
+        return result;
+    }
+
   }
   
 });

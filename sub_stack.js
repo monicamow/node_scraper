@@ -31,7 +31,7 @@ request(websiteURL, function (error, response, html) {
     });
 
     function isImageFile(obj) {
-      return obj.fileType !== undefined
+      return obj.fileType !== undefined && obj.fileType !== ''
     }
 
     var filteredDataArray = dataArray.filter(isImageFile);
